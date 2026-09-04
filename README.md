@@ -1,4 +1,5 @@
 # Super Mario Fanclub
+
 # Webtilgængelighed og web performance-optimering
 
 **Semester:** 3. semester
@@ -6,6 +7,30 @@
 > Udviklet til studerende på **3. semester**. Ingen AI-værktøjer er nødvendige — kun en browser, en teksteditor, et tastatur og et simpelt billedværktøj.
 
 ---
+
+Side Performance før Performance efter Accessibility efter
+index.html 75 100 95
+news.html 75 100 95
+games.html 75 100 95
+contact.html75 100 95
+
+Skriv derefter kort: 1. Hvilke ændringer gav den største performanceforbedring? - Billedernes størrelse I form af pixels og format (.jpg --> .webp)
+
+    2. Hvilke accessibility-problemer fandt du?
+    - Nogle links der var rebundant, samt nogle kontraster på teksten og banner-farven I toppen af siderne.
+
+    3. Hvilke problemer kunne Lighthouse finde?
+    - Lighthouse fandt problemer med fx hvor hurtigt ting blev kørt, så den sagde hvis nu et af mine billeder burde være længere nede I koden, så den ikke bruger tid og energi på at køre det billede før alt muligt andet.
+
+    4. Hvilke problemer fandt WAVE?
+    - Den fandt primært kontrast problemer og noget med nogle formularer der havde det samme id.
+
+    5. Hvilke problemer krævede HeadingsMap eller manuel kontrol?
+    - Der var nogle få ting ift hvilken tekst der skulle være h1 og hvilken der egentlig bare skulle være branding.
+
+    6. Hvad har du lært om sammenhængen mellem performance og accessibility?
+
+Der er stor sammenhæng, for hvis noget kører godt, så er det også mere på vej til at være bedre webtilgængelighed.
 
 ## Opgavebeskrivelse
 
@@ -35,7 +60,6 @@ contact.html
 > **Vigtigt:** Foretag ikke alle ændringer på én gang. Test løbende, så du kan se, hvilken effekt dine ændringer har.
 
 ---
-
 
 # Fremgangsmåde – sådan kommer du i gang med projektet
 
@@ -227,7 +251,7 @@ Sitet anvender flere billeder i JPG-format.
 Eksempel:
 
 ```html
-<img src="img/banner.jpg" alt="marioclub welcome banner">
+<img src="img/banner.jpg" alt="marioclub welcome banner" />
 ```
 
 Du skal undersøge billedernes:
@@ -243,7 +267,7 @@ Konvertér de relevante JPG-billeder til **WebP**. Hvis der også findes andre t
 Det er ikke nok blot at ændre filendelsen i HTML:
 
 ```html
-<img src="img/banner.webp" alt="marioclub welcome banner">
+<img src="img/banner.webp" alt="marioclub welcome banner" />
 ```
 
 hvis filen stadig kun eksisterer som:
@@ -269,7 +293,7 @@ banner.webp
 Derefter ændres HTML:
 
 ```html
-<img src="img/banner.webp" alt="...">
+<img src="img/banner.webp" alt="..." />
 ```
 
 ### Hvorfor er dette bedre?
@@ -366,7 +390,7 @@ Når billederne er konverteret, skal HTML-filerne opdateres.
 ## Forkert
 
 ```html
-<img src="img/thumb-1.jpg" alt="...">
+<img src="img/thumb-1.jpg" alt="..." />
 ```
 
 hvis du ønsker at anvende den nye WebP-version.
@@ -378,7 +402,7 @@ Browseren fortsætter med at hente den gamle JPG-fil, selvom du har oprettet en 
 ## Korrekt princip
 
 ```html
-<img src="img/thumb-1.webp" alt="...">
+<img src="img/thumb-1.webp" alt="..." />
 ```
 
 ### Hvorfor er dette bedre?
@@ -398,21 +422,13 @@ Billeder længere nede på siden kan være relevante at lazy-loade.
 Eksempel:
 
 ```html
-<img
-    src="img/thumb-1.webp"
-    alt="..."
-    loading="lazy"
->
+<img src="img/thumb-1.webp" alt="..." loading="lazy" />
 ```
 
 ## Forkert princip
 
 ```html
-<img
-    src="img/banner.webp"
-    alt="..."
-    loading="lazy"
->
+<img src="img/banner.webp" alt="..." loading="lazy" />
 ```
 
 hvis banneret er et vigtigt billede, som vises med det samme øverst på siden.
@@ -446,13 +462,13 @@ Webtilgængelighed handler også om, hvorvidt billedets betydning er tilgængeli
 I starterkoden findes eksempelvis:
 
 ```html
-<img src="img/thumb-1.jpg" alt="mario thumbnail 1">
+<img src="img/thumb-1.jpg" alt="mario thumbnail 1" />
 ```
 
 ## Forkert
 
 ```html
-<img src="img/thumb-1.webp" alt="mario thumbnail 1">
+<img src="img/thumb-1.webp" alt="mario thumbnail 1" />
 ```
 
 ### Hvorfor er det et problem?
@@ -466,10 +482,7 @@ Hvis billedet har betydning for indholdet, skal `alt` kort beskrive billedets re
 Eksempel:
 
 ```html
-<img
-    src="img/example.webp"
-    alt="Mario jumping over an obstacle"
->
+<img src="img/example.webp" alt="Mario jumping over an obstacle" />
 ```
 
 Hvis billedet udelukkende er dekorativt, skal du overveje:
@@ -543,11 +556,11 @@ Eksempel:
 
 ```css
 header h1 {
-    color: white;
-    border: 8px solid white;
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 36px;
+  color: white;
+  border: 8px solid white;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 36px;
 }
 ```
 
@@ -619,13 +632,7 @@ En CSS-klasse fortæller ikke i sig selv hjælpemidler, at dette link repræsent
 ## Korrekt princip
 
 ```html
-<a
-    href="news.html"
-    class="join"
-    aria-current="page"
->
-    Latest news
-</a>
+<a href="news.html" class="join" aria-current="page"> Latest news </a>
 ```
 
 ### Hvorfor er dette bedre?
@@ -650,11 +657,11 @@ Eksempel:
 
 ```html
 <input
-    type="email"
-    name="email"
-    placeholder="Type email & hit enter"
-    required
->
+  type="email"
+  name="email"
+  placeholder="Type email & hit enter"
+  required
+/>
 ```
 
 Et `placeholder` er ikke en erstatning for et `<label>`.
@@ -662,10 +669,7 @@ Et `placeholder` er ikke en erstatning for et `<label>`.
 ## Forkert
 
 ```html
-<input
-    type="email"
-    placeholder="Type your email"
->
+<input type="email" placeholder="Type your email" />
 ```
 
 ### Hvorfor er det et problem?
@@ -678,13 +682,13 @@ Når brugeren begynder at skrive, forsvinder placeholder-teksten. Feltet har hel
 <label for="email">Email address</label>
 
 <input
-    type="email"
-    id="email"
-    name="email"
-    autocomplete="email"
-    placeholder="name@example.com"
-    required
->
+  type="email"
+  id="email"
+  name="email"
+  autocomplete="email"
+  placeholder="name@example.com"
+  required
+/>
 ```
 
 ### Hvorfor er dette bedre?
@@ -702,10 +706,7 @@ Et `<textarea>` bør også have et label.
 ## Forkert
 
 ```html
-<textarea
-    name="question"
-    placeholder="Ask a question..."
-></textarea>
+<textarea name="question" placeholder="Ask a question..."></textarea>
 ```
 
 ## Korrekt princip
@@ -714,9 +715,9 @@ Et `<textarea>` bør også have et label.
 <label for="question">Your question</label>
 
 <textarea
-    id="question"
-    name="question"
-    placeholder="Ask a question..."
+  id="question"
+  name="question"
+  placeholder="Ask a question..."
 ></textarea>
 ```
 
@@ -725,15 +726,11 @@ Et inputfelt med `list` og `<datalist>` skal også have et label.
 ## Forkert
 
 ```html
-<input
-    list="countries"
-    name="country"
-    id="country"
->
+<input list="countries" name="country" id="country" />
 
 <datalist id="countries">
-    <option value="Denmark">
-    <option value="Sweden">
+  <option value="Denmark"></option>
+  <option value="Sweden"></option>
 </datalist>
 ```
 
@@ -743,15 +740,15 @@ Et inputfelt med `list` og `<datalist>` skal også have et label.
 <label for="country">Country</label>
 
 <input
-    list="countries"
-    name="country"
-    id="country"
-    autocomplete="country-name"
->
+  list="countries"
+  name="country"
+  id="country"
+  autocomplete="country-name"
+/>
 
 <datalist id="countries">
-    <option value="Denmark">
-    <option value="Sweden">
+  <option value="Denmark"></option>
+  <option value="Sweden"></option>
 </datalist>
 ```
 
@@ -779,21 +776,21 @@ Eksempel i HTML:
 ```html
 <label for="firstname">First name</label>
 <input
-    type="text"
-    id="firstname"
-    name="fname"
-    autocomplete="given-name"
-    required
->
+  type="text"
+  id="firstname"
+  name="fname"
+  autocomplete="given-name"
+  required
+/>
 
 <label for="lastname">Last name</label>
 <input
-    type="text"
-    id="lastname"
-    name="lname"
-    autocomplete="family-name"
-    required
->
+  type="text"
+  id="lastname"
+  name="lname"
+  autocomplete="family-name"
+  required
+/>
 ```
 
 ### Vigtigt
@@ -832,7 +829,7 @@ Type email & hit enter
 Hovedformularen på `contact.html` har allerede en gyldig submit-kontrol:
 
 ```html
-<input type="submit" value="Get in Touch">
+<input type="submit" value="Get in Touch" />
 ```
 
 Den behøver derfor ikke ændres alene af accessibility-hensyn. Opgaven er at vurdere hver formular og kun ændre de dele, der faktisk har et problem.
@@ -841,13 +838,9 @@ Den behøver derfor ikke ændres alene af accessibility-hensyn. Opgaven er at vu
 
 ```html
 <form>
-    <label for="email">Email address</label>
+  <label for="email">Email address</label>
 
-    <input
-        type="email"
-        id="email"
-        placeholder="Type email & hit enter"
-    >
+  <input type="email" id="email" placeholder="Type email & hit enter" />
 </form>
 ```
 
@@ -859,17 +852,11 @@ Brugeren skal selv vide, at Enter sender formularen, og instruktionen i placehol
 
 ```html
 <form>
-    <label for="email">Email address</label>
+  <label for="email">Email address</label>
 
-    <input
-        type="email"
-        id="email"
-        name="email"
-        autocomplete="email"
-        required
-    >
+  <input type="email" id="email" name="email" autocomplete="email" required />
 
-    <button type="submit">Join the club</button>
+  <button type="submit">Join the club</button>
 </form>
 ```
 
@@ -882,7 +869,7 @@ Formularfeltets formål og handlingen for at sende formularen er begge tydeligt 
 Begge dele er gyldige:
 
 ```html
-<input type="submit" value="Get in Touch">
+<input type="submit" value="Get in Touch" />
 ```
 
 og:
@@ -942,15 +929,15 @@ En vejledende struktur kan være:
 
 ```html
 <head>
-    <!-- tegnsæt -->
+  <!-- tegnsæt -->
 
-    <!-- viewport -->
+  <!-- viewport -->
 
-    <!-- unik og beskrivende title -->
+  <!-- unik og beskrivende title -->
 
-    <!-- favicon -->
+  <!-- favicon -->
 
-    <!-- stylesheet -->
+  <!-- stylesheet -->
 </head>
 ```
 
@@ -960,13 +947,13 @@ En mulig færdig struktur kan eksempelvis ende sådan:
 
 ```html
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Marioclub - Contact</title>
+  <title>Marioclub - Contact</title>
 
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 ```
 
@@ -979,7 +966,7 @@ En mulig færdig struktur kan eksempelvis ende sådan:
 Undersøg, om hver HTML-fil indeholder:
 
 ```html
-<meta charset="utf-8">
+<meta charset="utf-8" />
 ```
 
 Hvis den mangler, skal den tilføjes.
@@ -999,7 +986,7 @@ Kontrollér også selve `<html>`-elementet.
 Hvis starterfilen eksempelvis begynder sådan:
 
 ```html
-<html>
+<html></html>
 ```
 
 skal du overveje, hvilket sprog siden er skrevet på.
@@ -1009,7 +996,7 @@ Siderne i Marioclub-projektet er skrevet på engelsk.
 ### Korrekt princip
 
 ```html
-<html lang="en">
+<html lang="en"></html>
 ```
 
 ### Hvorfor er dette bedre?
@@ -1182,8 +1169,8 @@ Eksempel:
 
 ```css
 form input:focus {
-    border: 4px dashed #4B4B4B;
-    outline: none;
+  border: 4px dashed #4b4b4b;
+  outline: none;
 }
 ```
 
@@ -1233,12 +1220,12 @@ Notér resultaterne før og efter optimering.
 
 Du kan eksempelvis bruge denne tabel:
 
-| Side | Performance før | Performance efter | Accessibility efter |
-|---|---:|---:|---:|
-| `index.html` |  |  |  |
-| `news.html` |  |  |  |
-| `games.html` |  |  |  |
-| `contact.html` |  |  |  |
+| Side           | Performance før | Performance efter | Accessibility efter |
+| -------------- | --------------: | ----------------: | ------------------: |
+| `index.html`   |                 |                   |                     |
+| `news.html`    |                 |                   |                     |
+| `games.html`   |                 |                   |                     |
+| `contact.html` |                 |                   |                     |
 
 Skriv derefter kort:
 
@@ -1293,14 +1280,14 @@ Inden du afslutter opgaven, skal du kontrollere:
 
 # Værktøjer i opgaven
 
-| Værktøj | Anvendelse |
-|---|---|
-| **Lighthouse** | Performance og overordnet accessibility-audit før og efter optimering |
-| **WAVE** | Accessibility-fejl, kontrast, alerts, struktur og ARIA |
-| **HeadingsMap** | Visualisering og analyse af headinghierarki |
-| **Chrome DevTools** | Network, responsive test og undersøgelse af HTML/CSS |
-| **W3C Validator** | Validering af HTML-koden |
-| **Tastatur** | Manuel test af navigation, formularer og fokus |
+| Værktøj             | Anvendelse                                                            |
+| ------------------- | --------------------------------------------------------------------- |
+| **Lighthouse**      | Performance og overordnet accessibility-audit før og efter optimering |
+| **WAVE**            | Accessibility-fejl, kontrast, alerts, struktur og ARIA                |
+| **HeadingsMap**     | Visualisering og analyse af headinghierarki                           |
+| **Chrome DevTools** | Network, responsive test og undersøgelse af HTML/CSS                  |
+| **W3C Validator**   | Validering af HTML-koden                                              |
+| **Tastatur**        | Manuel test af navigation, formularer og fokus                        |
 
 ---
 
