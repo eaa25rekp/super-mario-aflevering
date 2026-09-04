@@ -25,6 +25,7 @@ header {
 }
 
 header .logo {
+
   color: white;
   text-decoration: none;
   font-size: 48px;
@@ -54,8 +55,8 @@ h1 {
 .banner .welcome {
   background: #FEB614;
   color: white;
-  padding: 30px;
-  font-size: 60px;
+  padding: 20px;
+  font-size: 40px;
   position: absolute;
   left: 0;
   top: 30%;
